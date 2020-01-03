@@ -1,0 +1,1 @@
+[{"id":1,"amount":2.0,"note":"hello","category":"HEALTH","expenseDate":"Jan 2, 2020, 7:50:52 PM"},{"id":3,"amount":5.0,"note":"yo","category":"GROCERIES","expenseDate":"Jan 2, 2020, 7:50:52 PM"},{"id":2,"amount":2.0,"note":"hello","category":"HEALTH","expenseDate":"Jan 3, 2020, 10:33:13 PM"}]
