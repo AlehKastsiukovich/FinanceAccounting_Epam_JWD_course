@@ -11,9 +11,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import by.javatr.finance.bean.Expense;
+
 import by.javatr.finance.dao.ExpenseDAO;
 import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.entity.Expense;
 
 public class GSONExpenseDAO implements ExpenseDAO {
 	private final String fileName;

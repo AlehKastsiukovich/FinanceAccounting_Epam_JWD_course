@@ -2,8 +2,9 @@ package by.javatr.finance.dao;
 
 
 import java.util.Collection;
-import by.javatr.finance.bean.Expense;
+
 import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.entity.Expense;
 
 public interface ModelDAO<T> {
 	//Optional<T> get(int id);

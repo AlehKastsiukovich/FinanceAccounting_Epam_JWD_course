@@ -4,10 +4,10 @@ package by.javatr.finance.service.impl;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
-import by.javatr.finance.bean.Expense;
-import by.javatr.finance.bean.ExpenseCategory;
 import by.javatr.finance.dao.ExpenseDAO;
 import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.entity.Expense;
+import by.javatr.finance.entity.ExpenseCategory;
 import by.javatr.finance.service.ExpenseService;
 import by.javatr.finance.service.exeption.ServiceException;
 import by.javatr.finance.service.validator.ServiceValidator;
@@ -70,19 +70,21 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 	@Override
 	public boolean updateExpenseNote(Expense expense, String newNote) throws ServiceException {
-		if (!(ServiceValidator.iSNotNullObject(expense) && ServiceValidator.isNoteValid(newNote))) {
+		if (!(ServiceValidator.iSNotNullObject(expense) && ServiceValidator.iSNotNullObject(newNote))) {
 			throw new ServiceException();
 		}
-	
+
 		setOfExpenses = daoGetAll();
 
 		for (Expense ex : setOfExpenses) {
 
 			if (ex.equals(expense)) {
+
 				ex.setNote(newNote);
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
@@ -91,7 +93,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		if (ServiceValidator.iSNotNullObject(expense) && ServiceValidator.iSNotNullObject(newCategory)) {
 			throw new ServiceException();
 		}
-		
+
 		setOfExpenses = daoGetAll();
 
 		for (Expense ex : setOfExpenses) {

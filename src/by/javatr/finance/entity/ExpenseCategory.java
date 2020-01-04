@@ -1,4 +1,4 @@
-package by.javatr.finance.bean;
+package by.javatr.finance.entity;
 
 public enum ExpenseCategory {
 	

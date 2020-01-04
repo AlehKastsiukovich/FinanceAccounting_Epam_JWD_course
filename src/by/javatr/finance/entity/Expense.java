@@ -1,7 +1,10 @@
-package by.javatr.finance.bean;
+package by.javatr.finance.entity;
+
 
 import java.io.Serializable;
 import java.util.*;
+import by.javatr.finance.entity.validator.EntityValidator;
+
 
 public class Expense implements Serializable, Comparable<Expense> {
 	private static final long serialVersionUID = -3550517173856626886L;
@@ -14,6 +17,11 @@ public class Expense implements Serializable, Comparable<Expense> {
 	// need to do builder
 
 	public Expense(int id, double amount, String note, ExpenseCategory category) {
+		if (!(EntityValidator.isNumberValid(id) && EntityValidator.isNumberValid(amount)
+				&& EntityValidator.isNotNullObject(note) && EntityValidator.isNotNullObject(category))) {
+			throw new IllegalStateException();
+		}
+
 		this.id = id;
 		this.amount = amount;
 		this.note = note;
@@ -30,6 +38,10 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setId(int id) {
+		if (!EntityValidator.isNumberValid(id)) {
+			throw new IllegalStateException();
+		}
+
 		this.id = id;
 	}
 
@@ -38,6 +50,10 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setAmount(double amount) {
+		if (!EntityValidator.isNumberValid(id)) {
+			throw new IllegalStateException();
+		}
+
 		this.amount = amount;
 	}
 
@@ -46,6 +62,10 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setNote(String note) {
+		if (!EntityValidator.isNotNullObject(note)) {
+			note = new String();
+		}
+
 		this.note = note;
 	}
 
@@ -54,6 +74,10 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setCategory(ExpenseCategory category) {
+		if (!EntityValidator.isNotNullObject(note)) {
+			throw new IllegalStateException();
+		}
+
 		this.category = category;
 	}
 
@@ -62,6 +86,10 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setExpenseDate(Date expenseDate) {
+		if (!EntityValidator.isNotNullObject(expenseDate)) {
+			expenseDate = new Date();
+		}
+
 		this.expenseDate = expenseDate;
 	}
 

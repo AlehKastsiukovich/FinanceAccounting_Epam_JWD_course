@@ -1,8 +1,8 @@
 package by.javatr.finance.service;
 
 
-import by.javatr.finance.bean.Expense;
-import by.javatr.finance.bean.ExpenseCategory;
+import by.javatr.finance.entity.Expense;
+import by.javatr.finance.entity.ExpenseCategory;
 import by.javatr.finance.service.exeption.ServiceException;
 
 import java.io.FileNotFoundException;
