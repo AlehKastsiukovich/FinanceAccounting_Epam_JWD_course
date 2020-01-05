@@ -8,41 +8,102 @@ import by.javatr.finance.entity.validator.EntityValidator;
 
 public class Expense implements Serializable, Comparable<Expense> {
 	private static final long serialVersionUID = -3550517173856626886L;
-	private Integer id;
+	private static int IDcounter = 0;
+	protected Integer id;
 	private double amount;
 	private String note;
 	private ExpenseCategory category;
 	private Date expenseDate;
 
 	// need to do builder
-
-	public Expense(int id, double amount, String note, ExpenseCategory category) {
-		if (!(EntityValidator.isNumberValid(id) && EntityValidator.isNumberValid(amount)
-				&& EntityValidator.isNotNullObject(note) && EntityValidator.isNotNullObject(category))) {
+	
+	/*
+	 * public Expense(double amount, String note, ExpenseCategory category) {
+		if (!( EntityValidator.isNumberValid(amount) 
+			&& EntityValidator.isNotNullObject(note) 
+			&& EntityValidator.isNotNullObject(category))) {
 			throw new IllegalStateException();
 		}
 
-		this.id = id;
+		this.id = IDcounter++;
 		this.amount = amount;
 		this.note = note;
 		this.category = category;
 		expenseDate = new Date();
 	}
+	 */
+	
 
-	public Expense() {
+	private Expense(ExpenseBuilder builder) {
+		id = builder.id;
+		amount = builder.amount;
+		note = builder.note;
+		category = builder.category;
+		expenseDate = builder.expenseDate;
+	}
+
+	private Expense() {
 
 	}
+	
+	public static class ExpenseBuilder {
+		protected Integer id;
+		private double amount;
+		private String note;
+		private ExpenseCategory category;
+		private Date expenseDate;
+		
+		
+		public ExpenseBuilder buildAmount(double amount) {
+			if (!EntityValidator.isNumberValid(amount)) {
+				throw new IllegalStateException();
+			}
+			
+			this.amount = amount;
+			
+			return this;
+		}
+		
+		public ExpenseBuilder buildNote(String note) {
+			if (!EntityValidator.isNotNullObject(note)) {
+				note = new String();
+			}
+			
+			this.note = note;
+			
+			return this;
+		}
+		
+		public ExpenseBuilder buildCategory(ExpenseCategory category) {
+			if (!EntityValidator.isNotNullObject(note)) {
+				category = ExpenseCategory.DEFAULT;
+			}
+
+			this.category = category;
+			
+			return this;
+		}
+		
+		public ExpenseBuilder buildDate(Date date) {
+			if (!EntityValidator.isNotNullObject(date)) {
+				date = new Date();
+			}
+			
+			expenseDate = date;
+			
+			return this;
+		}
+		
+		public Expense build() {
+			id = IDcounter++;
+			
+			return new Expense(this);
+		}
+	}
+	
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		if (!EntityValidator.isNumberValid(id)) {
-			throw new IllegalStateException();
-		}
-
-		this.id = id;
 	}
 
 	public double getAmount() {
@@ -75,7 +136,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 
 	public void setCategory(ExpenseCategory category) {
 		if (!EntityValidator.isNotNullObject(note)) {
-			throw new IllegalStateException();
+			category = ExpenseCategory.DEFAULT;
 		}
 
 		this.category = category;

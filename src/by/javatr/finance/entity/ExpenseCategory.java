@@ -1,5 +1,6 @@
 package by.javatr.finance.entity;
 
+
 public enum ExpenseCategory {
 	
 	SHOPPING,
@@ -7,6 +8,7 @@ public enum ExpenseCategory {
 	TRANSPORT,
 	LEISURE,
 	RESTAURANT,
-	HEALTH
-	
+	HEALTH,
+	DEFAULT
+
 }

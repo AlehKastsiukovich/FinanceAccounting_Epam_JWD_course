@@ -11,12 +11,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-
 import by.javatr.finance.dao.ExpenseDAO;
 import by.javatr.finance.dao.exception.DAOException;
 import by.javatr.finance.entity.Expense;
 
+
 public class GSONExpenseDAO implements ExpenseDAO {
+	private static GSONExpenseDAO instance;
 	private final String fileName;
 	private final File file;
 	
@@ -27,9 +28,18 @@ public class GSONExpenseDAO implements ExpenseDAO {
 
 	@Override
 	public Collection<Expense> getAll() throws DAOException {
-		// проверка есть ли файл. если нет то создать.
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				throw new DAOException();
+			}
+		}
+		
 		Gson gson = new Gson();
+		
 		Collection<Expense> gsCollection = null;
+		
 		FileReader reader = null;
 
 		try {
@@ -51,8 +61,12 @@ public class GSONExpenseDAO implements ExpenseDAO {
 
 	@Override
 	public boolean writeAll(Collection<Expense> list) throws DAOException {
-		// проверки
+		if (list == null || list.size() == 0) {
+			throw new DAOException();
+		}
+		
 		Gson gson = new Gson();
+		
 		FileWriter writer = null;
 
 		try {

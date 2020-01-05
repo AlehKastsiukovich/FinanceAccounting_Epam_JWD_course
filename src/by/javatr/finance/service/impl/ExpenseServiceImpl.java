@@ -90,7 +90,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 	@Override
 	public boolean updateExpenseCategory(Expense expense, ExpenseCategory newCategory) throws ServiceException {
-		if (ServiceValidator.iSNotNullObject(expense) && ServiceValidator.iSNotNullObject(newCategory)) {
+		if (!(ServiceValidator.iSNotNullObject(expense) && ServiceValidator.iSNotNullObject(newCategory))) {
 			throw new ServiceException();
 		}
 
@@ -109,7 +109,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 	@Override
 	public boolean deleteExpense(Expense expense) throws ServiceException {
-		if (ServiceValidator.iSNotNullObject(expense)) {
+		if (!ServiceValidator.iSNotNullObject(expense)) {
 			throw new ServiceException();
 		}
 		
@@ -139,6 +139,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 			throw new ServiceException();
 		} catch (DAOException e) {
 			throw new ServiceException();
+		}
+		
+		if (!ServiceValidator.iSNotNullObject(set)) {
+			set = new TreeSet<Expense>();
 		}
 
 		return set;
