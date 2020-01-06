@@ -1,7 +1,7 @@
 package by.javatr.finance.entity.validator;
 
 
-public class EntityValidator {
+public class ExpenseValidator {
 	
 	public static boolean isNotNullObject(Object object) {
 		if (object != null) {

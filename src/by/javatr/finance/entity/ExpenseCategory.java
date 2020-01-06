@@ -9,6 +9,5 @@ public enum ExpenseCategory {
 	LEISURE,
 	RESTAURANT,
 	HEALTH,
-	DEFAULT
-
+	DEFAULT;
 }

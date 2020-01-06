@@ -15,7 +15,7 @@ public class Runner {
 
 	public static void main(String[] args) {
 
-		ExpenseDAO dao = new GSONExpenseDAO();
+		ExpenseDAO dao = GSONExpenseDAO.GetInstance();
 
 		
 		Expense expense = new Expense.ExpenseBuilder()
@@ -25,7 +25,7 @@ public class Runner {
 									 .build();
 		
 		Expense expense2 = new Expense.ExpenseBuilder()
-									 .buildAmount(25).buildNote("world")
+									 .buildAmount(25).buildNote(null)
 									 .buildCategory(null)
 									 .buildDate(new Date())
 									 .build();
@@ -49,7 +49,7 @@ public class Runner {
 									 .build();
 		
 		Expense expense6 = new Expense.ExpenseBuilder()
-									 .buildAmount(400).buildNote("6")
+									 .buildAmount(400).buildNote("22")
 									 .buildCategory(ExpenseCategory.TRANSPORT)
 									 .buildDate(new Date())
 									 .build();
@@ -86,28 +86,8 @@ public class Runner {
 		}
 		
 		for (Expense exp : set) {
-			System.out.println(exp.toString());
+			System.out.println(exp);
 		}
-		
-		System.out.println("_________________________");
-		
-	
-		try {
-			service.deleteExpense(expense2);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			set = (Set<Expense>) service.findAllExpense();
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for (Expense exp : set) {
-			System.out.println(exp.toString());
-		}
+
 	}
 }

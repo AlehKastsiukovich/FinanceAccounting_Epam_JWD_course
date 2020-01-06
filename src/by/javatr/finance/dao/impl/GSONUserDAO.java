@@ -11,31 +11,32 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import by.javatr.finance.dao.ExpenseDAO;
+import by.javatr.finance.dao.UserDAO;
 import by.javatr.finance.dao.exception.DAOException;
-import by.javatr.finance.entity.Expense;
+import by.javatr.finance.entity.User;
 
 
-public class GSONExpenseDAO implements ExpenseDAO {
-	private static GSONExpenseDAO instance;
+public class GSONUserDAO implements UserDAO {
+	private static GSONUserDAO instance;
 	private final String fileName;
 	private final File file;
 	
-	private GSONExpenseDAO() {
-		fileName = "GSONStorage.txt";
+	private GSONUserDAO() {
+		fileName = "GSONUserStorageFile.txt";
 		file = new File(fileName);
 	}
 	
-	public static GSONExpenseDAO GetInstance() {
+	public static GSONUserDAO getInstance() {
 		if (instance == null) {
-			instance = new GSONExpenseDAO();
+			return new GSONUserDAO();
 		}
 		
 		return instance;
 	}
+	
 
 	@Override
-	public Collection<Expense> getAll() throws DAOException {
+	public Collection<User> getAll() throws DAOException {
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -46,13 +47,13 @@ public class GSONExpenseDAO implements ExpenseDAO {
 		
 		Gson gson = new Gson();
 		        
-		Collection<Expense> gsCollection = null;
+		Collection<User> gsCollection = null;
 		
 		FileReader reader = null;
 
 		try {
 			reader = new FileReader(fileName);
-			gsCollection = (Collection<Expense>) gson.fromJson(reader, new TypeToken<Set<Expense>>() {
+			gsCollection = (Collection<User>) gson.fromJson(reader, new TypeToken<Set<User>>() {
 			}.getType());
 		} catch (JsonSyntaxException | JsonIOException | IOException e) {
 			throw new DAOException();
@@ -67,8 +68,9 @@ public class GSONExpenseDAO implements ExpenseDAO {
 		return gsCollection;
 	}
 
+	
 	@Override
-	public boolean writeAll(Collection<Expense> list) throws DAOException {
+	public boolean writeAll(Collection<User> list) throws DAOException {
 		if (list == null || list.size() == 0) {
 			throw new DAOException();
 		}
@@ -93,5 +95,3 @@ public class GSONExpenseDAO implements ExpenseDAO {
 		return true;
 	}
 }
-
-

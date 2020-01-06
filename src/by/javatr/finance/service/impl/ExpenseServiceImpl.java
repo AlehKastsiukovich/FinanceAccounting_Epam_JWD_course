@@ -2,6 +2,7 @@ package by.javatr.finance.service.impl;
 
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 import by.javatr.finance.dao.ExpenseDAO;
@@ -16,7 +17,8 @@ import by.javatr.finance.service.validator.ServiceValidator;
 public class ExpenseServiceImpl implements ExpenseService {
 	private ExpenseDAO dao;
 	private Set<Expense> setOfExpenses;
-
+	
+	
 	public ExpenseServiceImpl(ExpenseDAO dao) throws ServiceException {
 		if (!ServiceValidator.iSNotNullObject(dao)) {
 			throw new ServiceException();
@@ -25,7 +27,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		this.dao = dao;
 		setOfExpenses = new TreeSet<Expense>();
 	}
-
+	
 	@Override
 	public Collection<Expense> findAllExpense() throws ServiceException {
 		return daoGetAll();
@@ -129,22 +131,35 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 		return false;
 	}
+	
+	@Override
+	public Set<Expense> filterByDate(Set<Expense> expenses, Date after, Date before) throws ServiceException {
+		Set<Expense> setOfExpense = daoGetAll();
+		
+		for (Expense exp : setOfExpense) {
+			if ((exp.getExpenseDate().after(after)) & (exp.getExpenseDate().before(before))) {
+				setOfExpense.add(exp);
+			}
+		}
+
+		return setOfExpense;
+	}
 
 	private Set<Expense> daoGetAll() throws ServiceException {
-		Set<Expense> set = null;
+		Set<Expense> setOfExpenses = null;
 
 		try {
-			set = (Set<Expense>) dao.getAll();
+			setOfExpenses = (Set<Expense>) dao.getAll();
 		} catch (NullPointerException e){
 			throw new ServiceException();
 		} catch (DAOException e) {
 			throw new ServiceException();
 		}
 		
-		if (!ServiceValidator.iSNotNullObject(set)) {
-			set = new TreeSet<Expense>();
+		if (!ServiceValidator.iSNotNullObject(setOfExpenses)) {
+			setOfExpenses = new TreeSet<Expense>();
 		}
 
-		return set;
+		return setOfExpenses;
 	}
 }

@@ -2,8 +2,8 @@ package by.javatr.finance.entity;
 
 
 import java.io.Serializable;
-import java.util.*;
-import by.javatr.finance.entity.validator.EntityValidator;
+import java.util.Date;
+import by.javatr.finance.entity.validator.ExpenseValidator;
 
 
 public class Expense implements Serializable, Comparable<Expense> {
@@ -55,7 +55,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 		
 		
 		public ExpenseBuilder buildAmount(double amount) {
-			if (!EntityValidator.isNumberValid(amount)) {
+			if (!ExpenseValidator.isNumberValid(amount)) {
 				throw new IllegalStateException();
 			}
 			
@@ -65,7 +65,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 		}
 		
 		public ExpenseBuilder buildNote(String note) {
-			if (!EntityValidator.isNotNullObject(note)) {
+			if (!ExpenseValidator.isNotNullObject(note)) {
 				note = new String();
 			}
 			
@@ -75,7 +75,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 		}
 		
 		public ExpenseBuilder buildCategory(ExpenseCategory category) {
-			if (!EntityValidator.isNotNullObject(note)) {
+			if (!ExpenseValidator.isNotNullObject(category)) {
 				category = ExpenseCategory.DEFAULT;
 			}
 
@@ -85,7 +85,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 		}
 		
 		public ExpenseBuilder buildDate(Date date) {
-			if (!EntityValidator.isNotNullObject(date)) {
+			if (!ExpenseValidator.isNotNullObject(date)) {
 				date = new Date();
 			}
 			
@@ -111,7 +111,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setAmount(double amount) {
-		if (!EntityValidator.isNumberValid(id)) {
+		if (!ExpenseValidator.isNumberValid(id)) {
 			throw new IllegalStateException();
 		}
 
@@ -123,7 +123,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setNote(String note) {
-		if (!EntityValidator.isNotNullObject(note)) {
+		if (!ExpenseValidator.isNotNullObject(note)) {
 			note = new String();
 		}
 
@@ -135,7 +135,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setCategory(ExpenseCategory category) {
-		if (!EntityValidator.isNotNullObject(note)) {
+		if (!ExpenseValidator.isNotNullObject(note)) {
 			category = ExpenseCategory.DEFAULT;
 		}
 
@@ -147,7 +147,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 	}
 
 	public void setExpenseDate(Date expenseDate) {
-		if (!EntityValidator.isNotNullObject(expenseDate)) {
+		if (!ExpenseValidator.isNotNullObject(expenseDate)) {
 			expenseDate = new Date();
 		}
 
@@ -179,7 +179,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 
 	@Override
 	public String toString() {
-		return id + "/ " + amount + "/ " + note + " /" + category;
+		return id + "/ " + amount + "/ " + note + " /" + category + " /" + expenseDate;
 	}
 
 	@Override
