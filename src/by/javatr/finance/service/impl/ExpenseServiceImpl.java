@@ -21,7 +21,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	
 	public ExpenseServiceImpl(ExpenseDAO dao) throws ServiceException {
 		if (!ServiceValidator.iSNotNullObject(dao)) {
-			throw new ServiceException();
+			throw new ServiceException("Dao object is null!");
 		}
 
 		this.dao = dao;
@@ -36,7 +36,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Override
 	public boolean addExpense(Expense expense) throws ServiceException {
 		if (!ServiceValidator.iSNotNullObject(expense)) {
-			throw new ServiceException();
+			throw new ServiceException("Expense object is null!");
 		}
 
 		setOfExpenses = daoGetAll();
@@ -45,7 +45,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		try {
 			dao.writeAll(setOfExpenses);
 		} catch (DAOException e) {
-			throw new ServiceException();
+			throw new ServiceException("Can't write collection to database!");
 		}
 
 		return true;
@@ -54,7 +54,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Override
 	public boolean updateExpenseAmount(Expense expense, double newAmount) throws ServiceException {
 		if (!(ServiceValidator.iSNotNullObject(expense) && ServiceValidator.isAmountValid(newAmount))) {
-			throw new ServiceException();
+			throw new ServiceException("Wrong method parameters. Expense is null or amount is not valid!");
 		}
 
 		setOfExpenses = daoGetAll();
@@ -73,7 +73,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Override
 	public boolean updateExpenseNote(Expense expense, String newNote) throws ServiceException {
 		if (!(ServiceValidator.iSNotNullObject(expense) && ServiceValidator.iSNotNullObject(newNote))) {
-			throw new ServiceException();
+			throw new ServiceException("Wrong method parameters. Expense is null or note is null!");
 		}
 
 		setOfExpenses = daoGetAll();
@@ -93,7 +93,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Override
 	public boolean updateExpenseCategory(Expense expense, ExpenseCategory newCategory) throws ServiceException {
 		if (!(ServiceValidator.iSNotNullObject(expense) && ServiceValidator.iSNotNullObject(newCategory))) {
-			throw new ServiceException();
+			throw new ServiceException("Wrong method parameters. Expense is null or category is not null!");
 		}
 
 		setOfExpenses = daoGetAll();
@@ -112,7 +112,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Override
 	public boolean deleteExpense(Expense expense) throws ServiceException {
 		if (!ServiceValidator.iSNotNullObject(expense)) {
-			throw new ServiceException();
+			throw new ServiceException("Expense object is null!");
 		}
 		
 		setOfExpenses = daoGetAll();
@@ -123,7 +123,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 			try {
 				dao.writeAll(setOfExpenses);
 			} catch (DAOException e) {
-				throw new ServiceException();
+				throw new ServiceException("Can't write collection to database!");
 			}
 
 			return true;
@@ -151,9 +151,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 		try {
 			setOfExpenses = (Set<Expense>) dao.getAll();
 		} catch (NullPointerException e){
-			throw new ServiceException();
+			throw new ServiceException("Dao object is null!");
 		} catch (DAOException e) {
-			throw new ServiceException();
+			throw new ServiceException("Can't read collection from database!");
 		}
 		
 		if (!ServiceValidator.iSNotNullObject(setOfExpenses)) {

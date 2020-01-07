@@ -40,7 +40,7 @@ public class GSONExpenseDAO implements ExpenseDAO {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				throw new DAOException();
+				throw new DAOException("Can't create file!");
 			}
 		}
 		
@@ -55,12 +55,12 @@ public class GSONExpenseDAO implements ExpenseDAO {
 			gsCollection = (Collection<Expense>) gson.fromJson(reader, new TypeToken<Set<Expense>>() {
 			}.getType());
 		} catch (JsonSyntaxException | JsonIOException | IOException e) {
-			throw new DAOException();
+			throw new DAOException("Issues with access to file!");
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				throw new DAOException();
+				throw new DAOException("Can't close stream!");
 			}
 		}
 
@@ -70,7 +70,7 @@ public class GSONExpenseDAO implements ExpenseDAO {
 	@Override
 	public boolean writeAll(Collection<Expense> list) throws DAOException {
 		if (list == null || list.size() == 0) {
-			throw new DAOException();
+			throw new DAOException("Can't write null object or empty collection!");
 		}
 		
 		Gson gson = new Gson();
@@ -81,12 +81,12 @@ public class GSONExpenseDAO implements ExpenseDAO {
 			writer = new FileWriter(file);
 			gson.toJson(list, writer);
 		} catch (JsonIOException | IOException e) {
-			throw new DAOException();
+			throw new DAOException("Can't create writer object. Issues with writing json to file!");
 		} finally {
 			try {
 				writer.close();
 			} catch (IOException e) {
-				throw new DAOException();
+				throw new DAOException("Can't close writer stream!");
 			}
 		}
 

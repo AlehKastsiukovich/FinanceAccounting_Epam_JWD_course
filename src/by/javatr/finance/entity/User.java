@@ -28,7 +28,7 @@ public class User implements Comparable<User> {
 
 		public UserBuilder buildLogin(String login) {
 			if (!UserValidator.loginIsValid(login)) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Wrong login. Read the  login creating rules!");
 			}
 			
 			this.login = login;
@@ -38,7 +38,7 @@ public class User implements Comparable<User> {
 
 		public UserBuilder buildPassword(String password) {
 			if (UserValidator.passwordIsValid(password)) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Wrong password. Read the password creating rules!");
 			}
 			
 			this.password = password;
@@ -47,8 +47,8 @@ public class User implements Comparable<User> {
 		}
 
 		public UserBuilder buildEmail(String email) {
-			if (UserValidator.passwordIsValid(password)) {
-				throw new IllegalArgumentException();
+			if (UserValidator.passwordIsValid(email)) {
+				throw new IllegalArgumentException("Wrong email. Read the email creating rules!");
 			}
 			
 			this.email = email;
@@ -80,7 +80,7 @@ public class User implements Comparable<User> {
 
 	public void setLogin(String login) {
 		if (!UserValidator.loginIsValid(login)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Wrong login. Read the  login creating rules!");
 		}
 		
 		this.login = login;
@@ -88,15 +88,15 @@ public class User implements Comparable<User> {
 
 	public void setPassword(String password) {
 		if (UserValidator.passwordIsValid(password)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Wrong password. Read the password creating rules!");
 		}
 		
 		this.password = password;
 	}
 
 	public void setEmail(String email) {
-		if (UserValidator.passwordIsValid(password)) {
-			throw new IllegalArgumentException();
+		if (UserValidator.passwordIsValid(email)) {
+			throw new IllegalArgumentException("Wrong email. Read the email creating rules!");
 		}
 		
 		this.email = email;

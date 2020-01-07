@@ -56,7 +56,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 		
 		public ExpenseBuilder buildAmount(double amount) {
 			if (!ExpenseValidator.isNumberValid(amount)) {
-				throw new IllegalStateException();
+				throw new IllegalArgumentException("Wrong amount. Amount must be positive!");
 			}
 			
 			this.amount = amount;
@@ -66,7 +66,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 		
 		public ExpenseBuilder buildNote(String note) {
 			if (!ExpenseValidator.isNotNullObject(note)) {
-				note = new String();
+				note = "";
 			}
 			
 			this.note = note;
@@ -112,7 +112,7 @@ public class Expense implements Serializable, Comparable<Expense> {
 
 	public void setAmount(double amount) {
 		if (!ExpenseValidator.isNumberValid(id)) {
-			throw new IllegalStateException();
+			throw new IllegalArgumentException("Wrong amount. Amount must be positive ");
 		}
 
 		this.amount = amount;

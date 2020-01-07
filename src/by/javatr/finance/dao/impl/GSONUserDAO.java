@@ -41,7 +41,7 @@ public class GSONUserDAO implements UserDAO {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				throw new DAOException();
+				throw new DAOException("Can't create new file to users data!");
 			}
 		}
 		
@@ -56,12 +56,12 @@ public class GSONUserDAO implements UserDAO {
 			gsCollection = (Collection<User>) gson.fromJson(reader, new TypeToken<Set<User>>() {
 			}.getType());
 		} catch (JsonSyntaxException | JsonIOException | IOException e) {
-			throw new DAOException();
+			throw new DAOException("Issues with getting info from gson format file!");
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				throw new DAOException();
+				throw new DAOException("Can't close reader stream!");
 			}
 		}
 
@@ -72,7 +72,7 @@ public class GSONUserDAO implements UserDAO {
 	@Override
 	public boolean writeAll(Collection<User> list) throws DAOException {
 		if (list == null || list.size() == 0) {
-			throw new DAOException();
+			throw new DAOException("Can't write null object or empty collection!");
 		}
 		
 		Gson gson = new Gson();
@@ -83,12 +83,12 @@ public class GSONUserDAO implements UserDAO {
 			writer = new FileWriter(file);
 			gson.toJson(list, writer);
 		} catch (JsonIOException | IOException e) {
-			throw new DAOException();
+			throw new DAOException("Can't create writer object. Issues with writing json to file!");
 		} finally {
 			try {
 				writer.close();
 			} catch (IOException e) {
-				throw new DAOException();
+				throw new DAOException("Can't close writer stream!");
 			}
 		}
 

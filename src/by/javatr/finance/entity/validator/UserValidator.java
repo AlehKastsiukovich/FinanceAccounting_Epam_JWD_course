@@ -1,18 +1,23 @@
 package by.javatr.finance.entity.validator;
 
 
+import java.util.regex.Pattern;
+
+
 public class UserValidator {
-	public static final String PASSWORD_PATTERN = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
-	public static final String LOGIN_PATTERN = "^[a-zA-Z0-9._-]{3,}$";
-	public static final String EMAIL_PATTERN = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]"
-											 + "+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+	private static final Pattern PASSWORD_PATTERN = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
+																	+ "(?=.*[@#$%^&+=])(?=\\S+$).{8,}");
+	private static final Pattern LOGIN_PATTERN = Pattern.compile("^[a-zA-Z0-9._-]{3,}$");
+	private static final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]"
+			 														+ "+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+	
 	
 	public static boolean passwordIsValid(String pass) {
 		if (pass == null) {
 			return false;
 		}
 		
-		if (!pass.matches(PASSWORD_PATTERN)) {
+		if (!PASSWORD_PATTERN.matcher(pass).matches()) {
 			return false;
 		}
 		
@@ -24,7 +29,7 @@ public class UserValidator {
 			return false;
 		}
 		
-		if (!log.matches(LOGIN_PATTERN)) {
+		if (!LOGIN_PATTERN.matcher(log).matches()) {
 			return false;
 		}
 		
@@ -36,7 +41,7 @@ public class UserValidator {
 			return false;
 		}
 		
-		if (!email.matches(EMAIL_PATTERN)) {
+		if (!EMAIL_PATTERN.matcher(email).matches()) {
 			return false;
 		}
 		
