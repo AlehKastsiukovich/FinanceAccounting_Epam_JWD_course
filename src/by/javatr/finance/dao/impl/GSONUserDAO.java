@@ -17,24 +17,36 @@ import by.javatr.finance.entity.User;
 
 
 public class GSONUserDAO implements UserDAO {
-	private static GSONUserDAO instance;
-	private final String fileName;
-	private final File file;
+	private static final File file = new File("GSONUserStorageFile.txt");
+	private Set<User> setOfUsers;
 	
-	private GSONUserDAO() {
-		fileName = "GSONUserStorageFile.txt";
-		file = new File(fileName);
-	}
-	
-	public static GSONUserDAO getInstance() {
-		if (instance == null) {
-			return new GSONUserDAO();
+	@Override
+	public boolean signIn(String login, String password) throws DAOException {
+		setOfUsers = (Set<User>) getAll();
+		
+		for (User user : setOfUsers) {
+			if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+				return true;
+			}
 		}
 		
-		return instance;
+		return false;
 	}
 	
+	@Override
+	public boolean registration(User user) throws DAOException {
+		setOfUsers = (Set<User>) getAll();
 
+		if (setOfUsers.contains(user)) {
+			throw new DAOException("Such user exists!");
+		}
+
+		setOfUsers.add(user);
+		writeAll(setOfUsers);
+
+		return true;
+	}
+	
 	@Override
 	public Collection<User> getAll() throws DAOException {
 		if (!file.exists()) {
@@ -52,7 +64,7 @@ public class GSONUserDAO implements UserDAO {
 		FileReader reader = null;
 
 		try {
-			reader = new FileReader(fileName);
+			reader = new FileReader(file.getName());
 			gsCollection = (Collection<User>) gson.fromJson(reader, new TypeToken<Set<User>>() {
 			}.getType());
 		} catch (JsonSyntaxException | JsonIOException | IOException e) {

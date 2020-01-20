@@ -25,5 +25,4 @@ public interface ExpenseService {
 	
 	Set<Expense> filterByDate(Set<Expense> expenses, Date after, Date before) throws ServiceException;
 	
-	
 }

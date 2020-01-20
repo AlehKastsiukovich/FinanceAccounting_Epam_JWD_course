@@ -15,25 +15,6 @@ public class Expense implements Serializable, Comparable<Expense> {
 	private ExpenseCategory category;
 	private Date expenseDate;
 
-	// need to do builder
-	
-	/*
-	 * public Expense(double amount, String note, ExpenseCategory category) {
-		if (!( EntityValidator.isNumberValid(amount) 
-			&& EntityValidator.isNotNullObject(note) 
-			&& EntityValidator.isNotNullObject(category))) {
-			throw new IllegalStateException();
-		}
-
-		this.id = IDcounter++;
-		this.amount = amount;
-		this.note = note;
-		this.category = category;
-		expenseDate = new Date();
-	}
-	 */
-	
-
 	private Expense(ExpenseBuilder builder) {
 		id = builder.id;
 		amount = builder.amount;

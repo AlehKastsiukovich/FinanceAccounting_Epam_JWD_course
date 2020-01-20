@@ -2,24 +2,19 @@ package by.javatr.finance.runner;
 
 
 import java.util.Date;
-import java.util.Set;
-import by.javatr.finance.dao.ExpenseDAO;
-import by.javatr.finance.dao.impl.GSONExpenseDAO;
-import by.javatr.finance.entity.*;
+import by.javatr.finance.entity.Expense;
+import by.javatr.finance.entity.ExpenseCategory;
 import by.javatr.finance.service.ExpenseService;
 import by.javatr.finance.service.exeption.ServiceException;
-import by.javatr.finance.service.impl.ExpenseServiceImpl;
+import by.javatr.finance.service.factory.ServiceFactory;
 
 
 public class Runner {
-
+	
 	public static void main(String[] args) {
-
-		ExpenseDAO dao = GSONExpenseDAO.GetInstance();
-
 		
 		Expense expense = new Expense.ExpenseBuilder()
-									 .buildAmount(100.00).buildNote("hello")
+									 .buildAmount(20.00).buildNote("hello")
 									 .buildCategory(ExpenseCategory.HEALTH)
 									 .buildDate(new Date())
 									 .build();
@@ -54,17 +49,12 @@ public class Runner {
 									 .buildDate(new Date())
 									 .build();
 		
-	
-		ExpenseService service = null;
 		
-		try {
-			service = new ExpenseServiceImpl(dao);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ServiceFactory factory = ServiceFactory.getInstance();
+		ExpenseService service = factory.getExpenseService();
 		
-		try {
+		/*
+		 * try {
 			service.addExpense(expense);
 			service.addExpense(expense2);
 			service.addExpense(expense3);
@@ -72,22 +62,21 @@ public class Runner {
 			service.addExpense(expense5);
 			service.addExpense(expense6);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Set<Expense> set = null;
+		 */
 		
 		try {
-			set = (Set<Expense>) service.findAllExpense();
+			service.deleteExpense(expense);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		for (Expense exp : set) {
-			System.out.println(exp);
 		}
 
+		try {
+			service.updateExpenseAmount(expense2, 99999);
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+		
+		}
 	}
 }
