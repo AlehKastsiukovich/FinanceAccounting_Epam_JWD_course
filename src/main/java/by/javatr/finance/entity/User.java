@@ -132,7 +132,7 @@ public class User implements Comparable<User> {
 		return id + " /" + login + " /" + password + " /" + " /" + email;
 	}
 
-	@Override
+
 	public int compareTo(User o) {
 		return id.compareTo(o.id);
 	}

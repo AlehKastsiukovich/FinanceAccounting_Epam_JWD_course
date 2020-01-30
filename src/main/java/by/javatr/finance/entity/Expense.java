@@ -163,7 +163,6 @@ public class Expense implements Serializable, Comparable<Expense> {
 		return id + "/ " + amount + "/ " + note + " /" + category + " /" + expenseDate;
 	}
 
-	@Override
 	public int compareTo(Expense o) {
 		return this.id.compareTo(o.id);
 	}
