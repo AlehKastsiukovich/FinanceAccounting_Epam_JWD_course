@@ -1,6 +1,6 @@
 package by.javatr.finance.entity;
 
-import by.javatr.finance.entity.validator.UserValidator;
+import by.javatr.finance.validator.UserValidator;
 
 public class User implements Comparable<User> {
 	private static int idCounter = 0;

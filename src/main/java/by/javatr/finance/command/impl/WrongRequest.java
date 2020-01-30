@@ -1,6 +1,6 @@
-package by.javatr.finance.controller.command.impl;
+package by.javatr.finance.command.impl;
 
-import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.command.Command;
 
 public class WrongRequest implements Command{
 

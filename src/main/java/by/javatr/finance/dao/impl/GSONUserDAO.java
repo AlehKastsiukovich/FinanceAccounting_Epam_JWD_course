@@ -12,7 +12,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import by.javatr.finance.dao.UserDAO;
-import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.exception.DAOException;
 import by.javatr.finance.entity.User;
 
 

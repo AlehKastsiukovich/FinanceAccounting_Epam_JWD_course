@@ -3,7 +3,7 @@ package by.javatr.finance.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import by.javatr.finance.entity.validator.ExpenseValidator;
+import by.javatr.finance.validator.ExpenseValidator;
 
 
 public class Expense implements Serializable, Comparable<Expense> {

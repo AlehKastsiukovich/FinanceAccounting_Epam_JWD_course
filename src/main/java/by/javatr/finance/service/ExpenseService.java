@@ -3,7 +3,7 @@ package by.javatr.finance.service;
 
 import by.javatr.finance.entity.Expense;
 import by.javatr.finance.entity.ExpenseCategory;
-import by.javatr.finance.service.exeption.ServiceException;
+import by.javatr.finance.exception.ServiceException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;

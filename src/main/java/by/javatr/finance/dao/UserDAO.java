@@ -1,7 +1,7 @@
 package by.javatr.finance.dao;
 
 
-import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.exception.DAOException;
 import by.javatr.finance.entity.User;
 
 

@@ -6,13 +6,13 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 import by.javatr.finance.dao.ExpenseDAO;
-import by.javatr.finance.dao.exception.DAOException;
-import by.javatr.finance.dao.factory.DAOFactory;
+import by.javatr.finance.exception.DAOException;
+import by.javatr.finance.factory.DAOFactory;
 import by.javatr.finance.entity.Expense;
 import by.javatr.finance.entity.ExpenseCategory;
 import by.javatr.finance.service.ExpenseService;
-import by.javatr.finance.service.exeption.ServiceException;
-import by.javatr.finance.service.validator.ServiceValidator;
+import by.javatr.finance.exception.ServiceException;
+import by.javatr.finance.validator.ServiceValidator;
 
 
 public class ExpenseServiceImpl implements ExpenseService {

@@ -1,4 +1,4 @@
-package by.javatr.finance.service.validator;
+package by.javatr.finance.validator;
 
 
 public class ServiceValidator {

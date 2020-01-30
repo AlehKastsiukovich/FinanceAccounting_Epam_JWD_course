@@ -2,12 +2,12 @@ package by.javatr.finance.service.impl;
 
 
 import by.javatr.finance.dao.UserDAO;
-import by.javatr.finance.dao.exception.DAOException;
-import by.javatr.finance.dao.factory.DAOFactory;
+import by.javatr.finance.exception.DAOException;
+import by.javatr.finance.factory.DAOFactory;
 import by.javatr.finance.entity.User;
 import by.javatr.finance.service.UserService;
-import by.javatr.finance.service.exeption.ServiceException;
-import by.javatr.finance.service.validator.ServiceValidator;
+import by.javatr.finance.exception.ServiceException;
+import by.javatr.finance.validator.ServiceValidator;
 
 
 public class UserServiceImpl implements UserService {

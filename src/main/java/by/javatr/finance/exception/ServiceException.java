@@ -1,4 +1,4 @@
-package by.javatr.finance.service.exeption;
+package by.javatr.finance.exception;
 
 
 public class ServiceException extends Exception{

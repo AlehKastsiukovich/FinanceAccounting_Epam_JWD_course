@@ -1,4 +1,4 @@
-package by.javatr.finance.entity.validator;
+package by.javatr.finance.validator;
 
 
 public class ExpenseValidator {

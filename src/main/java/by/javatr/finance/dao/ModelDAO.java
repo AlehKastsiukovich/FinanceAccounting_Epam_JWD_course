@@ -2,7 +2,7 @@ package by.javatr.finance.dao;
 
 
 import java.util.Collection;
-import by.javatr.finance.dao.exception.DAOException;
+import by.javatr.finance.exception.DAOException;
 
 
 public interface ModelDAO<T> {

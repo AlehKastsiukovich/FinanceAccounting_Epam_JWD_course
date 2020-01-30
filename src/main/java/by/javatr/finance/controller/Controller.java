@@ -1,7 +1,7 @@
 package by.javatr.finance.controller;
 
 
-import by.javatr.finance.controller.command.Command;
+import by.javatr.finance.command.Command;
 
 
 public final class Controller {

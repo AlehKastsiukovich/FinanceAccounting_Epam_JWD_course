@@ -3,12 +3,12 @@ package by.javatr.finance.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import by.javatr.finance.controller.command.Command;
-import by.javatr.finance.controller.command.impl.AddExpense;
-import by.javatr.finance.controller.command.impl.DeleteExpense;
-import by.javatr.finance.controller.command.impl.Registration;
-import by.javatr.finance.controller.command.impl.SignIn;
-import by.javatr.finance.controller.command.impl.WrongRequest;
+import by.javatr.finance.command.Command;
+import by.javatr.finance.command.impl.AddExpense;
+import by.javatr.finance.command.impl.DeleteExpense;
+import by.javatr.finance.command.impl.Registration;
+import by.javatr.finance.command.impl.SignIn;
+import by.javatr.finance.command.impl.WrongRequest;
 
 
 final class CommandProvider {

@@ -1,4 +1,4 @@
-package by.javatr.finance.dao.factory;
+package by.javatr.finance.factory;
 
 
 import by.javatr.finance.dao.ExpenseDAO;

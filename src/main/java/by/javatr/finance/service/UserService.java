@@ -2,7 +2,7 @@ package by.javatr.finance.service;
 
 
 import by.javatr.finance.entity.User;
-import by.javatr.finance.service.exeption.ServiceException;
+import by.javatr.finance.exception.ServiceException;
 
 
 public interface UserService {

@@ -1,4 +1,4 @@
-package by.javatr.finance.service.factory;
+package by.javatr.finance.factory;
 
 
 import by.javatr.finance.service.ExpenseService;
