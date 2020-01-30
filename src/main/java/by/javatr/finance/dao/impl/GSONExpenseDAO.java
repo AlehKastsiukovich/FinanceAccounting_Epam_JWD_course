@@ -20,7 +20,7 @@ import by.javatr.finance.entity.ExpenseCategory;
 
 
 public class GSONExpenseDAO implements ExpenseDAO {
-	private static final File file = new File("GSONExpenseStorage.txt");
+	private static final File file = new File("D:\\JavaProjects\\FinanceAccounting\\src\\main\\resources\\GSONExpenseStorage.txt");
 	private Set<Expense> setOfExpenses;
 	
 	@Override

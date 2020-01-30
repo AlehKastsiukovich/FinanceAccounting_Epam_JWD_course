@@ -17,7 +17,7 @@ import by.javatr.finance.entity.User;
 
 
 public class GSONUserDAO implements UserDAO {
-	private static final File file = new File("GSONUserStorageFile.txt");
+	private static final File file = new File("D:\\JavaProjects\\FinanceAccounting\\src\\main\\resources\\GSONUserStorageFile.txt");
 	private Set<User> setOfUsers;
 	
 	@Override
