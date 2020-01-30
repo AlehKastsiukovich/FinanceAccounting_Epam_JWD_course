@@ -8,16 +8,18 @@ import by.javatr.finance.dao.impl.GSONUserDAO;
 
 
 public class DAOFactory {
-	private final static DAOFactory instance = new DAOFactory();
-	
 	private final ExpenseDAO expenseGSON = new GSONExpenseDAO();
 	private final UserDAO userGSON  = new GSONUserDAO();
-	
+
 	private DAOFactory() {
 	}
-	
+
+	private static class DAOFactoryHolder {
+		public static final DAOFactory instance = new DAOFactory();
+	}
+
 	public static DAOFactory getInstance() {
-		return instance;
+		return DAOFactoryHolder.instance;
 	}
 	
 	public ExpenseDAO getExpenseDAO() {
